@@ -13,5 +13,10 @@
     "cheerio": "^1.0.0",
     "express": "^4.21.2",
     "puppeteer": "^24.1.1"
+  },
+  "functions": {
+    "core/wsgi.py": {
+      "runtime": "@vercel/python@4.3.0"
+    }
   }
 }
