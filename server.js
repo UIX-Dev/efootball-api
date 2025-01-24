@@ -5,7 +5,7 @@ const cheerio = require("cheerio");
 const app = express();
 const PORT = 3000;
 
-app.use(express.json()); 
+app.use(express.json());
 
 app.post("/api/get-rendered-content", async (req, res) => {
     const { url } = req.body;
@@ -15,21 +15,13 @@ app.post("/api/get-rendered-content", async (req, res) => {
     }
 
     try {
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: [
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu",
-            ],
-        });
+        const browser = await puppeteer.launch();
 
         const page = await browser.newPage();
 
-        await page.setUserAgent(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        );
+        // await page.setUserAgent(
+        //     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        // );
 
         await page.goto(url, { waitUntil: "networkidle0" });
 
@@ -42,7 +34,7 @@ app.post("/api/get-rendered-content", async (req, res) => {
         res.status(200).json({ src: firstImageSrc || null });
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).json({ error: "Failed to scrape content" });
+        res.status(500).json({ error: JSON.stringify(error) });
     }
 });
 
