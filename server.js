@@ -5,9 +5,8 @@ const cheerio = require("cheerio");
 const app = express();
 const PORT = 3000;
 
-app.use(express.json()); // Middleware để parse JSON body
+app.use(express.json()); 
 
-// Endpoint API
 app.post("/api/get-rendered-content", async (req, res) => {
     const { url } = req.body;
 
