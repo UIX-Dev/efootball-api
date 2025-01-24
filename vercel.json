@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "functions": {
+        "api/get-rendered-content.js": {
+            "runtime": "nodejs18.x",
+            "maxDuration": 10,
+            "memory": 512
+        }
+    }
+}
